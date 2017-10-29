@@ -1,0 +1,11 @@
+from edx_io import edx_io
+from collections import deque
+l = deque()
+with edx_io() as io:
+    n = int(io.next_int())
+    for i in range(n):
+        ops = io.next_token()
+        if ops.decode('utf-8') == '+':
+            l.append(io.next_token().decode('utf-8'))
+        elif ops.decode('utf-8') == '-':
+            io.writeln(l.popleft())

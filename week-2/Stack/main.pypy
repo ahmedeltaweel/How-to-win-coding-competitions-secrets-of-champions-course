@@ -1,0 +1,14 @@
+from edx_io import edx_io
+
+l = []
+out = []
+with edx_io() as io:
+    n = int(io.next_int())
+    for i in range(n):
+        ops = io.next_token()
+        if ops.decode('utf-8') == '+':
+            l.append(io.next_token().decode('utf-8'))
+        elif ops.decode('utf-8') == '-':
+            out.append(l.pop())
+    for i in out:
+        io.writeln(i)
