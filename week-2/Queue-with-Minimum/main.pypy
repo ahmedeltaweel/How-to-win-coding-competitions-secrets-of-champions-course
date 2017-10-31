@@ -1,0 +1,20 @@
+from edx_io import edx_io
+from collections import deque
+l = deque()
+_min = False
+with edx_io() as io:
+    n = int(io.next_int())
+    for i in range(n):
+        ops = io.next_token().decode('utf-8')
+        if ops == '+':
+            inp = int(io.next_token().decode('utf-8'))
+            l.append(inp)
+            if _min is False or inp < _min:
+                _min = inp
+        elif ops == '-':
+            x = l.popleft()
+            if _min is False or x == _min:
+                #_min = min(l)
+                pass
+        elif ops == '?':
+            io.writeln(min(l))
