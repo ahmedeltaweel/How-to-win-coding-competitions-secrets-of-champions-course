@@ -1,8 +1,8 @@
 from edx_io import edx_io
-import heapq
+
 
 l = []
-track = []
+_min = []
 with edx_io() as io:
     n = int(io.next_int())
     for i in range(n):
@@ -10,10 +10,9 @@ with edx_io() as io:
         if ops == '+':
             inp = int(io.next_token().decode('utf-8'))
             l.append(inp)
-            track.append(inp)
-            heapq.heapify(l)
+            _min.append(inp)
+            _min.sort()
         elif ops == '-':
-            x = track.pop(0)
-            l.remove(x)
+            _min.remove(l.pop(0))
         elif ops == '?':
-            io.writeln(l[0])
+            io.writeln(_min[0])
